@@ -1,6 +1,4 @@
-# Your code goes here.
-# You can delete these comments, but do not change the name of this file
-# Write your code to expect a terminal of 80 characters wide and 24 rows high
+
 import gspread
 from google.oauth2.service_account import Credentials
 from pprint import pprint
@@ -20,17 +18,17 @@ SHEET = GSPREAD_CLIENT.open('love_sandwiches')
 def get_sales_data():
     """
 
-    Get sales figure input from the user    
+    Get sales figure input from the user.
     """
-    while True:   
+    while True:
         print("Please Enter sales data from the last market.")
         print("Data should be six numbers, seprarated by commas")
         print("Example: 10,20,30,40,50,60\n")
 
         data_str = input("Enter your data here:")
-    
+
         sales_data = data_str.split(",")
-        
+
         if validate_data(sales_data):
             print('Data is valid!')
             break
@@ -81,7 +79,7 @@ def calculate_surplus_data(sales_row):
     print("~Calculating surplus data...\n")
     stock = SHEET.worksheet("stock").get_all_values()
     stock_row = stock[-1]
-    
+
     surplus_data = []
     for stock, sales in zip(stock_row, sales_row):
         surplus = int(stock) - sales
